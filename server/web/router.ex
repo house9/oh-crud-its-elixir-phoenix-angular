@@ -20,7 +20,9 @@ defmodule OhCrud.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", OhCrud do
-  #   pipe_through :api
-  # end
+  scope "/api", OhCrud do
+    pipe_through :api
+
+    resources "/projects", Api.ProjectController, only: [:index, :show, :create, :update, :delete]
+  end
 end
