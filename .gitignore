@@ -14,3 +14,10 @@ erl_crash.dump
 # comment this depending on your deployment strategy.
 /server/priv/static/css
 /server/priv/static/js
+
+/client/node_modules/
+/client/bower_components/
+/client/.sass-cache/
+/client/.tmp/
+/client/dist/
+
