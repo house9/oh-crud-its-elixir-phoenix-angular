@@ -1,40 +1,24 @@
-<div class="container">
 
-  <div ng-include="'app/components/navbar/navbar.html'"></div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
 
-  <div class="jumbotron text-center">
-    <h1>List Projects: Oh Crud</h1>
-  </div>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
+    <tr ng-repeat="project in projects">
+      <td>{{ project.name }}</td>
+      <td>{{ project.description }}</td>
 
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
+      <td class="text-right">
+        <a ui-sref="projects.show({ id: project.id })">Show</a>
+        TODO: crud links (edit|delete)
+      </td>
+    </tr>
 
-      <tr ng-repeat="project in projects">
-        <td>{{ project.name }}</td>
-        <td>{{ project.description }}</td>
-
-        <td class="text-right">
-          <!-- <a ui-sref="projects.show({ id: project.id })">Show</a> -->
-          TODO: crud links (show|edit|delete)
-          <div ui-view="show"></div>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-
-  <hr>
-
-  <div class="footer">
-    <p>Crud</p>
-  </div>
-
-</div>
+  </tbody>
+</table>

@@ -1,14 +1,11 @@
 'use strict';
 
 class ProjectsShowController {
-  constructor ($scope, $state, $stateParams) {
-    // debugger
-    $scope.product = $scope.products.find(function (item) {
-      return item.id === $stateParams.id;
-    });
+  constructor ($scope, project) {
+    $scope.project = project;
   }
 }
 
-ProjectsShowController.$inject = ['$scope', '$state', '$stateParams'];
+ProjectsShowController.$inject = ['$scope', 'project'];
 
 export default ProjectsShowController;

@@ -27,25 +27,32 @@ angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 're
         controller: 'AboutController'
       })
       .state('projects', {
+        abstract: true,
         url: '/projects',
+        templateUrl: 'app/projects/container.html'
+      })
+      .state('projects.index', {
+        url: '/index',
         templateUrl: 'app/projects/index.html',
         controller: 'ProjectsIndexController',
         resolve: {
           projectsResource: 'projectsResource',
           projects: function(projectsResource) {
-            return projectsResource.getList(); //.$promise;
+            return projectsResource.getList();
           }
         }
       })
-      // .state('projects.show', {
-      //   url: '/:id',
-      //   views: {
-      //     'show': {
-      //       templateUrl: 'app/projects/show.html',
-      //       controller: 'ProjectsShowController'
-      //     }
-      //   }
-      // })
+      .state('projects.show', {
+        url: '/:id',
+        templateUrl: 'app/projects/show.html',
+        controller: 'ProjectsShowController',
+        resolve: {
+          projectsResource: 'projectsResource',
+          project: function(projectsResource, $stateParams) {
+            return projectsResource.one($stateParams.id).get();
+          }
+        }
+      })
       .state('home', {
         url: '/',
         templateUrl: 'app/main/main.html',
