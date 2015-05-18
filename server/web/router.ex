@@ -18,6 +18,7 @@ defmodule OhCrud.Router do
 
     get "/", PageController, :index
     resources "/projects", ProjectController
+    resources "/departments", DepartmentController
   end
 
   # Other scopes may use custom stacks.
@@ -25,5 +26,6 @@ defmodule OhCrud.Router do
     pipe_through :api
 
     resources "/projects", Api.ProjectController, only: [:index, :show, :create, :update, :delete]
+    resources "/departments", Api.DepartmentController
   end
 end
