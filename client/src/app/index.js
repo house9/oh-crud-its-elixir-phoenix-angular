@@ -4,12 +4,14 @@ import MainCtrl from './main/main.controller';
 import AboutController from './about/about.controller';
 import ProjectsIndexController from './projects/projects-index.controller';
 import ProjectsShowController from './projects/projects-show.controller';
+import ProjectsEditController from './projects/projects-edit.controller';
 import NavbarCtrl from '../app/components/navbar/navbar.controller';
 
 angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router', 'ui.bootstrap'])
   .controller('AboutController', AboutController)
   .controller('ProjectsIndexController', ProjectsIndexController)
   .controller('ProjectsShowController', ProjectsShowController)
+  .controller('ProjectsEditController', ProjectsEditController)
   .controller('MainCtrl', MainCtrl)
   .controller('NavbarCtrl', NavbarCtrl)
 
@@ -19,6 +21,14 @@ angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 're
 
   .config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
     RestangularProvider.setBaseUrl('http://localhost:4000/api');
+    // https://github.com/mgonto/restangular/issues/109
+    RestangularProvider.addRequestInterceptor(function (elem, operation, what) {
+      if (operation === 'post' || operation === 'put') {
+        var wrapper = {};
+        wrapper[what.substring(0, what.length -1)] = elem;
+      }
+      return wrapper;
+    });
 
     $stateProvider
       .state('about', {
@@ -46,6 +56,17 @@ angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 're
         url: '/:id',
         templateUrl: 'app/projects/show.html',
         controller: 'ProjectsShowController',
+        resolve: {
+          projectsResource: 'projectsResource',
+          project: function(projectsResource, $stateParams) {
+            return projectsResource.one($stateParams.id).get();
+          }
+        }
+      })
+      .state('projects.edit', {
+        url: '/:id/edit',
+        templateUrl: 'app/projects/edit.html',
+        controller: 'ProjectsEditController',
         resolve: {
           projectsResource: 'projectsResource',
           project: function(projectsResource, $stateParams) {
