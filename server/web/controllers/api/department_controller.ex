@@ -6,6 +6,11 @@ defmodule OhCrud.Api.DepartmentController do
   plug :scrub_params, "department" when action in [:create, :update]
   plug :action
 
+  def options(conn, _params) do
+    conn
+    |> send_resp(200, "GET,POST,DELETE,OPTIONS,PUT")
+  end
+
   def index(conn, _params) do
     departments = Repo.all(Department)
     render(conn, "index.json", departments: departments)

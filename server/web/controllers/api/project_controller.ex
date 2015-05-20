@@ -6,6 +6,11 @@ defmodule OhCrud.Api.ProjectController do
   plug :scrub_params, "project" when action in [:create, :update]
   plug :action
 
+  def options(conn, _params) do
+    conn
+    |> send_resp(200, "GET,POST,DELETE,OPTIONS,PUT")
+  end
+
   def index(conn, _params) do
     projects = Repo.all(Project)
     render conn, projects: projects

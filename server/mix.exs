@@ -33,7 +33,7 @@ defmodule OhCrud.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_live_reload, "~> 0.4"},
      {:phoenix_html, "~> 1.0"},
-     {:cors_plug, ">= 0.0.1"},
+     # {:plug_cors, "~> 0.7"},
      {:cowboy, "~> 1.0"}]
   end
 end

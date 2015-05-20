@@ -1,4 +1,4 @@
-# OhCrud
+# OhCrud - server
 
 To start your new Phoenix application:
 
