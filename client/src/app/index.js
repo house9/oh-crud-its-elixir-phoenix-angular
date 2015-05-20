@@ -2,6 +2,7 @@
 
 import MainCtrl from './main/main.controller';
 import AboutController from './about/about.controller';
+import ProjectsNewController from './projects/projects-new.controller';
 import ProjectsIndexController from './projects/projects-index.controller';
 import ProjectsShowController from './projects/projects-show.controller';
 import ProjectsEditController from './projects/projects-edit.controller';
@@ -9,6 +10,7 @@ import NavbarCtrl from '../app/components/navbar/navbar.controller';
 
 angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'restangular', 'ui.router', 'ui.bootstrap'])
   .controller('AboutController', AboutController)
+  .controller('ProjectsNewController', ProjectsNewController)
   .controller('ProjectsIndexController', ProjectsIndexController)
   .controller('ProjectsShowController', ProjectsShowController)
   .controller('ProjectsEditController', ProjectsEditController)
@@ -40,6 +42,11 @@ angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 're
         abstract: true,
         url: '/projects',
         templateUrl: 'app/projects/container.html'
+      })
+      .state('projects.new', {
+        url: '/new',
+        templateUrl: 'app/projects/new.html',
+        controller: 'ProjectsNewController'
       })
       .state('projects.index', {
         url: '/index',
