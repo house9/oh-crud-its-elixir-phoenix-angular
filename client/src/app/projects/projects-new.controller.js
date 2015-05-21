@@ -1,8 +1,9 @@
 'use strict';
 
 class ProjectsNewController {
-  constructor ($scope, $state, projectsResource) {
+  constructor ($scope, $state, projectsResource, departments) {
     $scope.project = {}; // TODO: init from projectsResource?
+    $scope.departments = departments;
 
     $scope.createProject = function () {
       projectsResource.post($scope.project).then(function (data) {
@@ -12,6 +13,6 @@ class ProjectsNewController {
   }
 }
 
-ProjectsNewController.$inject = ['$scope', '$state', 'projectsResource'];
+ProjectsNewController.$inject = ['$scope', '$state', 'projectsResource', 'departments'];
 
 export default ProjectsNewController;

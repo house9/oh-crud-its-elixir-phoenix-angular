@@ -20,6 +20,9 @@ angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 're
   .factory('projectsResource', function (Restangular) {
     return Restangular.service('projects');
   })
+  .factory('departmentsResource', function (Restangular) {
+    return Restangular.service('departments');
+  })
 
   .config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
     RestangularProvider.setBaseUrl('http://localhost:4000/api');
@@ -46,7 +49,13 @@ angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 're
       .state('projects.new', {
         url: '/new',
         templateUrl: 'app/projects/new.html',
-        controller: 'ProjectsNewController'
+        controller: 'ProjectsNewController',
+        resolve: {
+          departmentsResource: 'departmentsResource',
+          departments: function(departmentsResource) {
+            return departmentsResource.getList();
+          }
+        }
       })
       .state('projects.index', {
         url: '/index',
@@ -75,6 +84,10 @@ angular.module('ohCrud', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 're
         templateUrl: 'app/projects/edit.html',
         controller: 'ProjectsEditController',
         resolve: {
+          departmentsResource: 'departmentsResource',
+          departments: function(departmentsResource) {
+            return departmentsResource.getList();
+          },
           projectsResource: 'projectsResource',
           project: function(projectsResource, $stateParams) {
             return projectsResource.one($stateParams.id).get();

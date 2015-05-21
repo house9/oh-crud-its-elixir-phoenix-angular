@@ -1,8 +1,11 @@
 'use strict';
 
 class ProjectsEditController {
-  constructor ($scope, $state, project, projectsResource) {
+  constructor ($scope, $state, project, projectsResource, departments) {
+    console.log(project);
     $scope.project = project;
+    console.log(departments);
+    $scope.departments = departments;
 
     $scope.editProject = function () {
       project.put().then(function (data) {
@@ -12,6 +15,6 @@ class ProjectsEditController {
   }
 }
 
-ProjectsEditController.$inject = ['$scope', '$state', 'project', 'projectsResource'];
+ProjectsEditController.$inject = ['$scope', '$state', 'project', 'projectsResource', 'departments'];
 
 export default ProjectsEditController;
