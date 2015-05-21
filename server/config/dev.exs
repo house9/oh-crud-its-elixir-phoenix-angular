@@ -32,3 +32,5 @@ config :server, OhCrud.Repo,
   username: "postgres",
   password: "postgres",
   database: "server_dev"
+
+config :plug_cors, origins: ["localhost"]

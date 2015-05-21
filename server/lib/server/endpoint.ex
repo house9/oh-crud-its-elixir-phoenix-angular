@@ -29,5 +29,6 @@ defmodule OhCrud.Endpoint do
     signing_salt: "2PfpEuj3",
     encryption_salt: "sO9oBNn7"
 
+  plug PlugCors
   plug :router, OhCrud.Router
 end

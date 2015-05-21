@@ -40,6 +40,8 @@ config :logger, level: :info
 #     config :server, OhCrud.Endpoint, server: true
 #
 
+config :plug_cors, origins: ["your-production-domain.com"]
+
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
