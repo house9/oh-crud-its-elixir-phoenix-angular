@@ -1,13 +1,4 @@
 <form class="form-horizontal" role="form" ng-submit="createProject()">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" ng-model="project.name" class="form-control" id="name" />
-  </div>
-
-  <div class="form-group">
-    <label for="description">Description</label>
-    <input type="text" ng-model="project.description" class="form-control" id="description" />
-  </div>
-
+  <div ng-include= src="app/projects/_form.html"></div>
   <input type="submit" class="btn btn-primary" value="Create Project" />
 </form>
